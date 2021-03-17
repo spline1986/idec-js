@@ -1,6 +1,7 @@
-import * as menu from "./mainmenu.js"
-import "./style.css"
 import "./config.js"
+import * as menu from "./mainmenu.js"
+import * as writer from "./writer.js"
+import "./style.css"
 
 (function() {
 	let idecJS = {
@@ -63,6 +64,12 @@ import "./config.js"
 		let lines = replaceLinks(message).split("\n");
 		let html = "<h1>" + idecJS.echoarea + "&nbsp;</h1>";
 		html += "<h3>" + idecJS.description + "</h3>";
+		html += "<div class='right'>";
+		html += "<a class='button' onclick='showWriter(\""
+			+ idec_config["node"] + "\", \""
+			+ idecJS.echoarea + "\", \""
+			+ idecJS.description +
+			"\", \"Новое сообщение\")'>Новое сообщение</a></div>";
 		html += "<p>Сообщение " + (idecJS.n + 1) + " из " + idecJS.msgids.length + "</p>";
 		let header = lines.slice(0, 7);
 		let body = lines.slice(7);
@@ -183,10 +190,14 @@ import "./config.js"
 		document.getElementById("panel").style.display = "none";
 		document.getElementById("readloader").style.display = "none";
 		document.getElementById("helper").style.display = "none";
+		document.getElementById("writer").style.display = "none";
 		document.getElementById("reader-content").innerHTML = "";
 		menu.mainMenu();
 	}
 	window.backToMenu = backToMenu;
+
+	window.showWriter = writer.showWriter;
+	window.hideWriter = writer.hideWriter;
 
 	document.addEventListener('keydown', function(event) {
 		if (event.code == "ArrowLeft" && !event.shiftKey) {
@@ -198,7 +209,12 @@ import "./config.js"
 		} else if (event.code == "KeyE") {
 			lastMessage();
 		} else if (event.code == "Escape") {
-			backToMenu();
+			if (document.getElementById("writer").style.display == "none") {
+				backToMenu();
+			} else {
+				hideWriter();
+				readEchoarea(idecJS.echoarea, false);
+			}
 		}
 	});
 })();

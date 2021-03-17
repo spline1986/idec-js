@@ -19,6 +19,17 @@
 		</div>
 	  </center>
 	</div>
+	<div id="writer" style="display: none">
+	  <div align="center">
+		<form id="writer-form">
+		  <div id="writer-title"></div>
+		  <input id="subject" type="text" placeholder="Тема сообщения"><br>
+		  <textarea id="writer-body" placeholder="Текст сообщения"></textarea><br>
+		  <input id="authstr" type="password" placeholder="Строка авторизации"><br><br>
+		  <input id="cancel" type="button" class="button" value="Отмена" onclick="hideWriter()"> <input id="submit" type="button" class="button" value="Отправить">
+		</form>
+      </div>
+	</div>
 	<div id="readloader"><b>Загрузка данных...</b></div>
 	<div id="helper">
 	  <b>Стрелки</b>: навигация<br>

@@ -63,6 +63,46 @@ h1, h3 {
 	display: none;
 }
 
+.button {
+	font-size: 12pt;
+	font-family: sans-serif;
+	padding: .25em .5em;
+	background: #4488ff;
+	color: #ffffff;
+	text-decoration: none;
+	border-radius: .25em;
+	box-shadow: 0 0 .10em #888877;
+	cursor: pointer;
+	border: 0;
+}
+
+.right {
+	width: 800px;
+	text-align: right;
+}
+
+#writer-form {
+	width: 800px;
+}
+
+#writer-form form {
+	display: block;
+}
+
+#subject, #writer-body, #authstr {
+	font-size: 12pt;
+	font-family: sans-serif;
+	width: 800px;
+	padding: .5em;
+	margin: .5em 0;
+	border-radius: 0;
+	border: 1px solid #424242;
+}
+
+#writer-body {
+	height: 200px;
+}
+
 @media (pointer:coarse) {
 	#reader-content {
 		font-size: 24pt;
