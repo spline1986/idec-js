@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta charset="utf-8">
+	<title>IDEC-JS</title>
+  </head>
+  <body>
+	<div id="mainmenu">
+	  <center>
+		<div id="menuloader"><h2>Загрузка данных...</h2></div>
+		<h2 id="menuheader" style="display: none">Список конференций</h2>
+		<table id="echolist" cellspacing="0">
+		</table>
+	  </center>
+	</div>
+	<div id="reader" style="display: none">
+	  <center>
+		<div id="reader-content">
+		</div>
+	  </center>
+	</div>
+	<div id="readloader"><b>Загрузка данных...</b></div>
+	<div id="helper">
+	  <b>Стрелки</b>: навигация<br>
+	  <b>B</b>: начало<br>
+	  <b>E</b>: конец<br>
+	  <b>Escape</b>: выход
+	</div>
+	<div id="panel">
+	  <span><a onclick="backToMenu()">☰</a></span>
+	  <span><a onclick="firstMessage()">⏮</a></span>
+	  <span><a onclick="prevMessage()">◀</a></span>
+	  <span><a onclick="nextMessage()">▶</a></span>
+	  <span><a onclick="lastMessage()">⏭</a></span>
+	</div>
+  </body>
+</html>
+
