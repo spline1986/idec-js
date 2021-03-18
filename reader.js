@@ -200,18 +200,20 @@ import "./style.css"
 	window.hideWriter = writer.hideWriter;
 
 	document.addEventListener('keydown', function(event) {
-		if (event.code == "ArrowLeft" && !event.shiftKey) {
-			prevMessage();
-		} else if (event.code == "ArrowRight" && !event.shiftKey) {
-			nextMessage();
-		} else if (event.code == "KeyB") {
-			firstMessage();
-		} else if (event.code == "KeyE") {
-			lastMessage();
-		} else if (event.code == "Escape") {
-			if (document.getElementById("writer").style.display == "none") {
+		if (document.getElementById("writer").style.display == "none") {
+			if (event.code == "ArrowLeft" && !event.shiftKey) {
+				prevMessage();
+			} else if (event.code == "ArrowRight" && !event.shiftKey) {
+				nextMessage();
+			} else if (event.code == "KeyB") {
+				firstMessage();
+			} else if (event.code == "KeyE") {
+				lastMessage();
+			} else if (event.code == "Escape") {
 				backToMenu();
-			} else {
+			}
+		} else {
+			if (event.code == "Escape") {
 				hideWriter();
 				readEchoarea(idecJS.echoarea, false);
 			}
