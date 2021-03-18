@@ -61,10 +61,11 @@ import "./style.css"
 	}
 
 	function renderMessage(message) {
-		let lines = replaceLinks(message).split("\n");
 		let html = "<h1>" + idecJS.echoarea + "&nbsp;</h1>";
 		html += "<h3>" + idecJS.description + "</h3>";
-		html += "<div class='right'>";
+		document.getElementById("reader-title").innerHTML = html;
+		let lines = replaceLinks(message).split("\n");
+		html = "<div class='right'>";
 		html += "<a class='button' onclick='showWriter(\""
 			+ idec_config["node"] + "\", \""
 			+ idecJS.echoarea + "\", \""
@@ -145,7 +146,7 @@ import "./style.css"
 		}
 		let html = "<h1>" + idecJS.echoarea + "&nbsp;</h1>";
 		html += "<h3>" + idecJS.description + "</h3>";
-		document.getElementById("reader-content").innerHTML = html;
+		document.getElementById("reader-title").innerHTML = html;
 		get_index(echoarea).then(function(result) {
 			buildMsgids(result);
 			calculateIndexOffset(echoarea, echoRecord, msgid);
@@ -191,6 +192,9 @@ import "./style.css"
 		document.getElementById("readloader").style.display = "none";
 		document.getElementById("helper").style.display = "none";
 		document.getElementById("writer").style.display = "none";
+		document.getElementById("reader").style.display = "none";
+		document.getElementById("reader-title").innerHTML = "";
+		document.getElementById("reader-popup").innerHTML = "";
 		document.getElementById("reader-content").innerHTML = "";
 		menu.mainMenu();
 	}
