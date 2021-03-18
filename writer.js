@@ -31,10 +31,28 @@ export async function sendMessage(url, echoarea) {
 	let formData = new FormData();
 	formData.append("pauth", authstr);
 	formData.append("tmsg", encoded);
-	console.log(url);
-	console.log(echoarea);
-	let response = await fetch(url + "u/point", {
-		method: 'POST',
-		body: formData
-	});
+	try {
+		let response = await fetch(url + "u/point", {
+			method: 'POST',
+			body: formData
+		});
+		let result = await response.text();
+		if (response.ok) {
+			if (result.indexOf("msg ok:") >= 0) {
+				hideWriter();
+				readEchoarea(echoarea, false);
+			} else if (result == "error: msg big!") {
+				document.getElementById("writer-error").style.display = "block";
+				document.getElementById("writer-error").innerHTML = "Сообщение слишком большое";
+			} else {
+				document.getElementById("writer-error").style.display = "block";
+				document.getElementById("writer-error").innerHTML = "Неверная строка авторизации";
+			}
+		}
+	} catch (e) {
+		if (e.name == "TypeError" && e.message == "NetworkError when attempting to fetch resource.") {
+			document.getElementById("writer-error").style.display = "block";
+			document.getElementById("writer-error").innerHTML = "Нет связи с сервером";
+		}
+	}
 }

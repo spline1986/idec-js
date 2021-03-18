@@ -81,6 +81,12 @@ h1, h3 {
 	text-align: right;
 }
 
+#writer-error {
+	display: none;
+	color: #ff4422;
+	font-weight: bold;
+}
+
 #writer-form {
 	width: 800px;
 }
