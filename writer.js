@@ -3,6 +3,10 @@ export function showWriter(url, echoarea, description, message) {
 	document.getElementById("submit").onclick = () => {
 		sendMessage(url, echoarea)
 	};
+	document.getElementById("authstr").onkeydown = () => {
+		if (event.keyCode == 13)
+			sendMessage(url, echoarea);
+	};
 	document.getElementById("subject").value = "";
 	document.getElementById("writer-body").value = "";
 	document.getElementById("authstr").value = "";
