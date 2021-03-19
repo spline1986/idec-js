@@ -61,6 +61,7 @@ function b64EncodeUnicode(str) {
 
 export async function sendMessage(url, echoarea) {
 	let message = echoarea + "\nAll\n";
+	document.getElementById("writer-error").style.display = "none";
 	message += document.getElementById("subject").value + "\n\n";
 	message += document.getElementById("writer-body").value;
 	let encoded = b64EncodeUnicode(message);
