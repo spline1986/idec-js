@@ -60,7 +60,7 @@ p {
 	position: fixed;
 	bottom: .5em;
 	right: .5em;
-	transition: all 0.5s linear;
+	transition: all 0.5s ease-out;
 	border-radius: .25em;
 	box-shadow: 0 0 .10em #888877;
 	opacity: 0;
@@ -89,6 +89,11 @@ h1, h3 {
 	box-shadow: 0 0 .10em #888877;
 	cursor: pointer;
 	border: 0;
+	transition: all 0.5s ease-out;
+}
+
+.button:hover {
+	background: #2244dd;
 }
 
 .small-button {
@@ -98,6 +103,13 @@ h1, h3 {
 	text-decoration: none;
 	cursor: pointer;
 	border: 0;
+	border-radius: .25em;
+	transition: all 0.5s ease-out;
+}
+
+.small-button:hover {
+	background: #eeeeff;
+	box-shadow: 0 0 .10em #888877;
 }
 
 .right {
