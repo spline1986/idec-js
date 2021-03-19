@@ -194,7 +194,6 @@ import "./style.css"
 		document.getElementById("writer").style.display = "none";
 		document.getElementById("reader").style.display = "none";
 		document.getElementById("reader-title").innerHTML = "";
-		document.getElementById("reader-popup").innerHTML = "";
 		document.getElementById("reader-content").innerHTML = "";
 		menu.mainMenu();
 	}

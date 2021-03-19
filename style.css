@@ -51,11 +51,23 @@ p {
 	right: .5em;
 }
 
+#popup {
+	text-weight: bold;
+	color: #ffffe8;
+	background: #44aa22;
+	padding: 1em;
+	display: none;
+	position: fixed;
+	bottom: .5em;
+	right: .5em;
+	transition: all 0.25s ease-out;
+}
+
 h1, h3 {
 	display: inline-block;
 }
 
-#reader-title, #reader-popup, #reader-content {
+#reader-title, #popup, #reader-content {
 	font-size: 14pt;
 }
 

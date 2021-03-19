@@ -40,6 +40,11 @@ export async function sendMessage(url, echoarea) {
 		if (response.ok) {
 			if (result.indexOf("msg ok:") >= 0) {
 				hideWriter();
+				document.getElementById("popup").innerHTML = "Сообщение отправлено";
+				document.getElementById("popup").style.display = "block";
+				setTimeout(() => {
+					document.getElementById("popup").style.display = "none";
+				}, 3000);
 				readEchoarea(echoarea, false);
 			} else if (result == "error: msg big!") {
 				document.getElementById("writer-error").style.display = "block";
