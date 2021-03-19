@@ -24,7 +24,8 @@
 		<form id="writer-form">
 		  <div id="writer-title"></div>
 		  <div id="writer-error"></div>
-		  <input id="subject" type="text" placeholder="Тема сообщения" onkeydown="javascript:if (event.keyCode == 13) { document.getElementById('writer-body').focus(); window.event.returnValue = false; }"><br>
+		  <input id="subject" name="subject" type="text" placeholder="Тема сообщения" onkeydown="javascript:if (event.keyCode == 13) { document.getElementById('writer-body').focus(); window.event.returnValue = false; }"><br>
+		  <input id="repto" type="hidden">
 		  <textarea id="writer-body" placeholder="Текст сообщения"></textarea><br>
 		  <input id="authstr" type="password" placeholder="Строка авторизации"><br><br>
 		  <input id="cancel" type="button" class="button" value="Отмена" onclick="hideWriter()"> <input id="submit" type="button" class="button" value="Отправить">

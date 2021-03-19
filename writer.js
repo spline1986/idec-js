@@ -1,4 +1,15 @@
-export function showWriter(url, echoarea, description, message) {
+function quoted_body(body) {
+	let quoted = "";
+	body.forEach((line) => {
+		if (line.length > 0) {
+			quoted += ">" + line;
+		}
+		quoted += "\n";
+	});
+	return quoted;
+}
+
+export function showWriter(url, echoarea, description, message, subject="", body="") {
 	document.getElementById("writer-title").innerHTML = "<h1>" + echoarea + "&nbsp;</h1> <h3>" + description + "</h3><br><center><b>" + message + "</b></center>";
 	document.getElementById("submit").onclick = () => {
 		sendMessage(url, echoarea)
@@ -7,8 +18,14 @@ export function showWriter(url, echoarea, description, message) {
 		if (event.keyCode == 13)
 			sendMessage(url, echoarea);
 	};
-	document.getElementById("subject").value = "";
-	document.getElementById("writer-body").value = "";
+	if (subject == "") {
+		document.getElementById("subject").value = "";
+		document.getElementById("writer-body").value = "";
+	} else {
+		body = quoted_body(body.split("::::"));
+		document.getElementById("subject").value = subject;
+		document.getElementById("writer-body").value = body;
+	}
 	document.getElementById("authstr").value = "";
 	document.getElementById("reader").style.display = "none";
 	document.getElementById("writer").style.display = "block";

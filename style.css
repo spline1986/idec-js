@@ -1,6 +1,7 @@
 body {
 	background: #ffffe8;
 	color: #242424;
+	font-family: sans-serif;
 }
 
 a {
@@ -53,7 +54,7 @@ p {
 
 #popup {
 	text-weight: bold;
-	color: #ffffe8;
+	color: #ffffff;
 	background: #44aa22;
 	padding: 1em;
 	display: none;
@@ -61,6 +62,8 @@ p {
 	bottom: .5em;
 	right: .5em;
 	transition: all 0.25s ease-out;
+	border-radius: .25em;
+	box-shadow: 0 0 .10em #888877;
 }
 
 h1, h3 {
@@ -84,6 +87,15 @@ h1, h3 {
 	text-decoration: none;
 	border-radius: .25em;
 	box-shadow: 0 0 .10em #888877;
+	cursor: pointer;
+	border: 0;
+}
+
+.small-button {
+	font-size: 12pt;
+	font-family: sans-serif;
+	padding: .25em .5em;
+	text-decoration: none;
 	cursor: pointer;
 	border: 0;
 }

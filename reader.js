@@ -65,20 +65,17 @@ import "./style.css"
 		html += "<h3>" + idecJS.description + "</h3>";
 		document.getElementById("reader-title").innerHTML = html;
 		let lines = replaceLinks(message).split("\n");
-		html = "<div class='right'>";
-		html += "<a class='button' onclick='showWriter(\""
-			+ idec_config["node"] + "\", \""
-			+ idecJS.echoarea + "\", \""
-			+ idecJS.description +
-			"\", \"Новое сообщение\")'>Новое сообщение</a></div>";
-		html += "<p>Сообщение " + (idecJS.n + 1) + " из " + idecJS.msgids.length + "</p>";
 		let header = lines.slice(0, 7);
 		let body = lines.slice(7);
+		html = "<div class='right'>";
+		html += "<a class='small-button' id='new-message'>Новое сообщение</a>&nbsp;";
+		html += "<a class='button' id='reply-message'>Ответить</a>";
+		html += "<p>Сообщение " + (idecJS.n + 1) + " из " + idecJS.msgids.length + "</p>";
 		html += renderHeader(header);
-		html +="<p>\n";
+		html +="<p>\n\n";
 		body.forEach((line) => { html += "\n" + line + "<br>\n" });
 		html +="</p>\n";
-		return html;
+		return [html, header[6], lines.slice(8)];
 	}
 
 	function readMessage() {
@@ -90,7 +87,26 @@ import "./style.css"
 			echoRecord = [echoRecord[0], echoRecord.slice(1).join(",")];
 			localStorage.setItem(idecJS.echoarea, [idecJS.n, echoRecord[1]]);
 			document.getElementById("readloader").style.display = "none";
-			document.getElementById("reader-content").innerHTML = renderMessage(message);
+			let rendered = renderMessage(message);
+			document.getElementById("reader-content").innerHTML = rendered[0];
+			document.getElementById("new-message").onclick = () => {
+				showWriter(
+					idec_config["node"],
+					idecJS.echoarea,
+					idecJS.description,
+					"Новое сообщение"
+				);
+			};
+			document.getElementById("reply-message").onclick = () => {
+				showWriter(
+					idec_config["node"],
+					idecJS.echoarea,
+					idecJS.description,
+					"Ответ на " + idecJS.msgids[idecJS.n],
+					rendered[1],
+					rendered[2].join("::::").trim()
+				);
+			};
 			let queryParams = new URLSearchParams(window.location.search);
 			queryParams.set("area", idecJS.echoarea);
 			queryParams.set("msgid", idecJS.msgids[idecJS.n]);
