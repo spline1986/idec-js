@@ -62,10 +62,10 @@ export async function sendMessage(url, echoarea) {
 			if (result.indexOf("msg ok:") >= 0) {
 				hideWriter();
 				document.getElementById("popup").innerHTML = "Сообщение отправлено";
-				document.getElementById("popup").style.display = "block";
+				document.getElementById("popup").style.opacity = "1";
 				setTimeout(() => {
-					document.getElementById("popup").style.display = "none";
-				}, 3000);
+					document.getElementById("popup").style.opacity = "0";
+				}, 5000);
 				readEchoarea(echoarea, false);
 			} else if (result == "error: msg big!") {
 				document.getElementById("writer-error").style.display = "block";
