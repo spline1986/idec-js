@@ -9,6 +9,17 @@ function quoted_body(body) {
 	return quoted;
 }
 
+function search_cookie(cookies) {
+	let value = false;
+	cookies = cookies.split(";");
+	cookies.forEach((cookie) => {
+		if (cookie.indexOf("authstr") >= 0) {
+			value = cookie.split("=")[1];
+		}
+	});
+	return value;
+}
+
 export function showWriter(url, echoarea, description, message, subject="", body="") {
 	document.getElementById("writer-title").innerHTML = "<h1>" + echoarea + "&nbsp;</h1> <h3>" + description + "</h3><br><center><b>" + message + "</b></center>";
 	document.getElementById("submit").onclick = () => {
@@ -26,7 +37,12 @@ export function showWriter(url, echoarea, description, message, subject="", body
 		document.getElementById("subject").value = subject;
 		document.getElementById("writer-body").value = body;
 	}
-	document.getElementById("authstr").value = "";
+	let cookie_authstr = search_cookie(document.cookie);
+	if (cookie_authstr) {
+		document.getElementById("authstr").value = cookie_authstr;
+	} else {
+		document.getElementById("authstr").value = "";
+	}
 	document.getElementById("reader").style.display = "none";
 	document.getElementById("writer").style.display = "block";
 }
@@ -61,6 +77,7 @@ export async function sendMessage(url, echoarea) {
 		if (response.ok) {
 			if (result.indexOf("msg ok:") >= 0) {
 				hideWriter();
+				document.cookie = "authstr=" + authstr + "; max-age=3600*24*28";
 				document.getElementById("popup").innerHTML = "Сообщение отправлено";
 				document.getElementById("popup").style.opacity = "1";
 				setTimeout(() => {
